@@ -1,16 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreBoard : MonoBehaviour
 {
-    //UnityEngine.UIElements.text scoreUI;
+    int score;
+    int textScore;
+    float time;
+    Text scoreText;
+
     void Start()
     {
-
+        scoreText = GetComponent<Text>();
+        scoreText.text = score.ToString();
     }
-    public void UpdateScore(float score)
-    {
 
+    void Update()
+    {
+        if (textScore > score)
+            return;
+
+        if (time < 1f)
+            time += Time.deltaTime;
+
+        scoreText.text = textScore.ToString();
+        textScore++;
+        time = 0;
+    }
+
+
+    public void ScoreHit(int scorePoint)
+    {
+        score += scorePoint;
     }
 }
