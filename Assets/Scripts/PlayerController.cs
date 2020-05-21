@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float controlPitchFactor = -25f;
     [SerializeField] float controlRollFactor = -50f;
 
+    [SerializeField] GameObject[] guns;
+
     float xThrow, yThrow;
 
     bool isControlEnable = true;
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
         ProcessingTranslation();
         ProcessingRoatation();
+        ProcessingFiring();
     }
 
     void OnPlayerDeath()
@@ -71,5 +74,25 @@ public class PlayerController : MonoBehaviour
         newOffsetY = Mathf.Clamp(newOffsetY, -limitY, limitY);
 
         transform.localPosition = new Vector3(newOffsetX, newOffsetY, transform.localPosition.z);
+    }
+
+    private void ProcessingFiring()
+    {
+        if (!Input.GetButton("Fire1"))
+            DeactiveGuns();
+        else
+            ActiveGuns();
+    }
+
+    private void ActiveGuns()
+    {
+        foreach (var item in guns)
+            item.SetActive(true);
+    }
+
+    private void DeactiveGuns()
+    {
+        foreach (var item in guns)
+            item.SetActive(false);
     }
 }
