@@ -14,13 +14,7 @@ public class CollisionHandler : MonoBehaviour
 
     void StartDeathSequence()
     {
-        // Invoke("ResetLevel", loadSenceDelay);
-
-        // if (deathFx != null)
-        //     deathFx.SetActive(true);
-
-        // SendMessage("OnPlayerDeath");
-        // SendMessageUpwards("OnPlayerDeath");
+        //TESTING
     }
 
     void ResetLevel()
